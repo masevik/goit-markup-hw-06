@@ -98,7 +98,6 @@ body {
   width: 1200px;
   padding-left: 15px;
   padding-right: 15px;
-  /* outline: 1px solid red; */
 }
 
 .card-set {
@@ -240,9 +239,10 @@ body {
 .button {
   display: flex;
   align-items: center;
-  text-align: center;
+  justify-content: center;
   padding: 10px 32px;
   margin: 0 auto;
+  min-width: 200px;
 
   font-family: inherit;
   font-weight: 700;
@@ -365,7 +365,6 @@ body {
   color: var(--link-color);
   background-color: var(--white-background-color);
   outline: none;
-
   transition: color var(--transition-function),
     background-color var(--transition-function);
 }
@@ -398,6 +397,7 @@ body {
   border-radius: var(--main-radius);
   border: 1px solid var(--link-color);
   color: var(--link-color);
+  outline: none;
   transition: color var(--transition-function),
     border var(--transition-function);
 }
@@ -425,8 +425,12 @@ body {
   align-items: baseline;
 }
 
-.column-one {
+.footer-column:not(:last-child) {
   margin-right: 70px;
+}
+
+.footer-column:last-child {
+  margin-left: auto;
 }
 
 .footer .logo {
@@ -463,10 +467,6 @@ body {
   color: var(--accent-color);
 }
 
-.column-two {
-  margin-right: 93px;
-}
-
 .footer-title {
   margin-bottom: 20px;
   font-size: 14px;
@@ -486,7 +486,7 @@ body {
   background-color: var(--accent-color);
 }
 
-.subscribe {
+.form-subscribe {
   display: flex;
 }
 
@@ -502,7 +502,7 @@ body {
   line-height: 1.25;
   letter-spacing: 0.03em;
   color: rgba(255, 255, 255, 0.6);
-  background-color: var(--main-background-color);
+  background-color: transparent;
   outline: none;
 
   transition: border-color var(--transition-function);
@@ -516,9 +516,9 @@ body {
   border-color: var(--accent-color);
 }
 
-.subscribe .button {
+/* .subscribe .button {
   padding: 10px 29px;
-}
+} */
 
 .subscribe-button-icon {
   margin-left: 10px;
@@ -548,7 +548,8 @@ body {
   position: absolute;
   left: 50%;
   top: 50%;
-  min-width: 528px;
+  max-width: 528px;
+  width: 100%;
   min-height: 581px;
   padding: 40px;
   background-color: #fff;
@@ -574,6 +575,15 @@ body {
   background: transparent;
   border: 1px solid rgba(0, 0, 0, 0.1);
   background-size: contain;
+  color: var(--white-text-color);
+  outline: none;
+  transition: background-color var(--transition-function);
+}
+
+.modal-close:hover,
+.modal-close:focus {
+  background-color: var(--accent-color);
+  fill: currentColor;
 }
 
 .no-scroll {
@@ -581,7 +591,7 @@ body {
 }
 
 .modal-text {
-  padding-bottom: 12px;
+  margin-bottom: 12px;
   font-weight: 700;
   font-size: 20px;
   line-height: 1.15;
@@ -591,9 +601,9 @@ body {
 }
 
 .modal-label {
-  position: relative;
   display: flex;
   flex-direction: column;
+  margin-bottom: 10px;
 }
 
 .field-name {
@@ -603,8 +613,10 @@ body {
   letter-spacing: 0.01em;
 }
 
+.modal-wrap {
+  position: relative;
+}
 .modal-field {
-  margin-bottom: 10px;
   display: block;
   width: 100%;
   height: 40px;
@@ -615,27 +627,34 @@ body {
   transition: border-color var(--transition-function);
 }
 
-.modal-field:focus-within {
+.modal-field:focus-within,
+.modal-field:hover {
   border-color: var(--accent-color);
 }
 
 .modal-field-icon {
   position: absolute;
-  top: calc(50% + 4px);
+  top: 50%;
   left: 12px;
   transform: translateY(-50%);
   fill: currentColor;
   transition: fill var(--transition-function);
 }
 
-.modal-field:focus-within + .modal-field-icon {
+.modal-field:focus-within + .modal-field-icon,
+.modal-field:hover + .modal-field-icon {
   fill: var(--accent-color);
+}
+
+.modal-label-comment {
+  display: flex;
+  flex-direction: column;
+  margin-bottom: 20px;
 }
 
 .modal-comment {
   height: 120px;
   padding: 12px 16px;
-  margin-bottom: 20px;
   border: 1px solid rgba(33, 33, 33, 0.2);
   border-radius: var(--main-radius);
   resize: none;
@@ -643,7 +662,8 @@ body {
   font-size: 12px;
 }
 
-.modal-comment:focus-within {
+.modal-comment:focus-within,
+.modal-comment:hover {
   border-color: var(--accent-color);
 }
 
@@ -655,6 +675,7 @@ body {
 }
 
 .modal-accept {
+  position: relative;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -691,6 +712,11 @@ body {
   background-image: url(../images/checked.svg);
   background-size: contain;
   background-origin: border-box;
+}
+
+.modal-checkbox:focus + .icon-check,
+.modal-checkbox:hover + .icon-check {
+  border-color: var(--accent-color);
 }
 
 .modal-link {
@@ -770,6 +796,7 @@ body {
 }
 
 .portfolio-item .link {
+  outline: none;
   display: block;
   transition: box-shadow var(--transition-function);
 }
